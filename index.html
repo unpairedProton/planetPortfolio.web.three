@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite App</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+  <div class="w-full h-screen bg-zinc-900 overflow-hidden">
+    <div class="absolute top-0  text-white left-0  w-full h-full z-[2]">
+      <nav class="w-full px-6  h-[10%]  flex justify-between items-center">
+        <h1 class="font-bold text-lg font-['dune']">Celest</h1>
+        <div class="flex space-x-6 font-semibold">
+          <a href="">Work</a>
+          <a href="">Projects</a>
+          <a href="">Contact</a>
+        </div>
+      </nav>
+      <div id="font" class="font-['dune']  w-full h-[22%] font-display  flex justify-center flex-col items-center ">
+        <div class=" h-[7em]  overflow-hidden relative">
+
+          <div class=" headings text-center h-full flex flex-col justify-between">
+
+            <h1 class="text-center  text-6xl font-light tracking-tighter">Work-Expo</h1>
+            <h3 class="text-center fontt">A world where each continent showcases a different skill-set</h3>
+          </div>
+          <div class="headings h-full flex text-center flex-col justify-between">
+            <h1 class=" text-center  text-6xl font-light tracking-tighter ">Projectus</h1>
+            <h3 class="text-center fontt">A nebula of creations, each a unique stellar formation</h3>
+          </div>
+          <div class="headings h-full flex flex-col  text-center justify-between">
+
+            <h1 class="text-center  text-6xl font-light tracking-tighter pt-1">Contactious</h1>
+            <h3 class="text-center fontt">Initiate signal transmission to the Celest core</h3>
+          </div>
+
+        </div>
+      
+        <div class="w-96 h-px bg-gradient-to-r from-transparent via-white to-transparent mt-4"></div>
+      </div>
+    </div>
+    <canvas id="canvas"></canvas>
+  </div>
+</body>
+<script src="main.js" type="module"></script>
+
+</html>
