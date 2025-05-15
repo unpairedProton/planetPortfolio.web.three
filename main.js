@@ -75,6 +75,8 @@ function starsBG() {
 }
 starsBG();
 
+
+
 // Basic Geometry
 function sphereObj(params) {
   for (let i = 0; i < 3; i++) {
@@ -157,6 +159,14 @@ function ani2() {
       })
 
       gsap.to(spheres.rotation, {
+        y: `+=${(Math.PI * 2) / 3}`,
+        duration: planetAnimationTime,
+        ease: 'none',
+
+
+      })
+
+       gsap.to(starSphere.rotation, {
         y: `+=${(Math.PI * 2) / 3}`,
         duration: planetAnimationTime,
         ease: 'none',
@@ -268,17 +278,75 @@ function onClick(event) {
     // const textureName = texturePath.split('/').pop(); // Gets the filename from path
     // console.log('Clicked texture:', textureName);
 
-    openNextPage(texturePath);
+    if (texturePath.includes("csilla" || "volcanic" || "venus")) {
+      
+    openNextPage(texturePath);      
+    }
   }
 }
 
+// Add this near your other raycaster code
+function onShipInteraction(event) {
 
+  if (!model) return;
+  // Calculate pointer position
+  pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+  pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+  // Update the picking ray with the camera and pointer position
+  raycaster.setFromCamera(pointer, camera);
+
+  // Check intersection with the ship model
+  const intersects = raycaster.intersectObject(model);
+
+  // Get the ship text element
+  const shipText = document.querySelector('.shipText');
+
+  if (intersects.length > 0) {
+    // Ship was intersected
+    gsap.to(shipText, {
+      opacity: 1,
+      duration: 0.8,
+      ease: "power2.in"
+    });
+  } else {
+    // No intersection
+    gsap.to(shipText, {
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    });
+  }
+}
+
+function landingShip(pagePath) {
+  gsap.to(model.scale, {
+      x: 0,
+      y: 0,
+      z: 0,
+      duration: 1,
+      onComplete: () => {
+        setTimeout(() => {
+          window.location.href = pagePath;
+        }, 250);
+      }
+    })
+
+    gsap.to(model.position, {
+      
+      y: -.1,
+      ease:"power1.inOut",
+      duration: 1.5,
+      
+    })
+}
 
 function openNextPage(texturePath) {
   // window.location.href = 'https://example.com/next-page'; // Replace with your desired URL
   if (texturePath.includes('csilla')) {
     console.log('csilla');
-    window.location.href = '/work.html';
+    landingShip("/work.html")
+
   }
   else if (texturePath.includes('volcanic')) {
     console.log('volcanic');
@@ -304,47 +372,51 @@ function getRandomRadianAngle() {
   return angles[randomIndex];
 }
 
-function spaceshipAni() {
-  shipTimeline = gsap.timeline({
-    repeat: -1, // Infinite loop
-    // onComplete: () => tl.restart() // Restart animation when complete
-  });
+// function spaceshipAni() {
+//   shipTimeline = gsap.timeline({
+//     repeat: -1, // Infinite loop
+//     // onComplete: () => tl.restart() // Restart animation when complete
+//   });
 
-  shipTimeline.to(model.position, {
-    y: .1, // Random y position
-    duration: shipAnimationTime,
-    ease: "power1.inOut",
-    onComplete: function () {
+//   shipTimeline.to(model.position, {
+//     y: .1, // Random y position
+//     duration: shipAnimationTime,
+//     ease: "power1.inOut",
+//     onComplete: function () {
 
-      // Update to a new random y position
-      gsap.to(model.position, {
-        y: getRandomInRange(),
-        duration: shipAnimationTime,
-        ease: "power1.inOut"
-      });
-    }
-  }, 'a');
+//       // Update to a new random y position
+//       gsap.to(model.position, {
+//         y: getRandomInRange(),
+//         duration: shipAnimationTime,
+//         ease: "power1.inOut"
+//       });
+//     }
+//   }, 'a');
 
-  shipTimeline.to(model.rotation, {
-    x: Math.PI / 4, // Random y position
-    duration: shipAnimationTime,
-    ease: "power1.inOut",
-    onComplete: function () {
+//   shipTimeline.to(model.rotation, {
+//     x: Math.PI / 4, // Random y position
+//     duration: shipAnimationTime,
+//     ease: "power1.inOut",
+//     onComplete: function () {
 
-      // Update to a new random y position
-      gsap.to(model.rotation, {
-        x: getRandomRadianAngle(),
-        duration: shipAnimationTime,
-        ease: "power1.inOut"
-      });
-    }
-  }, 'a');
+//       // Update to a new random y position
+//       gsap.to(model.rotation, {
+//         x: getRandomRadianAngle(),
+//         duration: shipAnimationTime,
+//         ease: "power1.inOut"
+//       });
+//     }
+//   }, 'a');
 
 
-}
+// }
 
 // Add click event listener
 window.addEventListener('click', onClick);
+
+// Add these event listeners after your existing window.addEventListener('click', onClick);
+window.addEventListener('mousemove', onShipInteraction);
+window.addEventListener('click', onShipInteraction);
 
 function animate() {
   requestAnimationFrame(animate);
