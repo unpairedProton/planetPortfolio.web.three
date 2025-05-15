@@ -9,7 +9,9 @@ let model;
 const planetAnimationTime = 1.58
 const shipAnimationTime = 1.2
 let shipTimeline;
+const shipText = document.querySelector('.shipText');
 
+let lastHoverTime=0
 
 const sphereMesh = []
 
@@ -69,7 +71,9 @@ function starsBG() {
     opacity: 0.4,
     side: THREE.BackSide // Render the inside of the sphere
   });
+
   starSphere = new THREE.Mesh(starGeometry, starMaterial);
+  starSphere.name = "galaxy"
   scene.add(starSphere);
 
 }
@@ -90,6 +94,7 @@ function sphereObj(params) {
     const sphereGeometry = new THREE.SphereGeometry(radius, segments, segments);
     const sphereMaterial = new THREE.MeshPhysicalMaterial({ map: texture });
     const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    sphere.name = `planet${i}`
 
     sphereMesh.push(sphere);
     //color or perfect k liye
@@ -166,7 +171,7 @@ function ani2() {
 
       })
 
-       gsap.to(starSphere.rotation, {
+      gsap.to(starSphere.rotation, {
         y: `+=${(Math.PI * 2) / 3}`,
         duration: planetAnimationTime,
         ease: 'none',
@@ -217,6 +222,8 @@ function ani2() {
   const gltfLoader = new GLTFLoader();
   gltfLoader.load('/3d/ship.glb', function (gltf) {
     model = gltf.scene
+    // 
+
     scene.add(model);
     model.position.z = 7;
     model.scale.set(0.01, 0.01, 0.01);
@@ -258,6 +265,65 @@ const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
 
 
+
+function onPointerMove(event) {
+
+  // calculate pointer position in normalized device coordinates
+  // (-1 to +1) for both components
+
+  pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+  pointer.y = - (event.clientY / window.innerHeight) * 2 + 1;
+
+  // update the picking ray with the camera and pointer position
+  raycaster.setFromCamera(pointer, camera);
+
+  // calculate objects intersecting the picking ray
+  const intersects = raycaster.intersectObjects(scene.children);
+const currentHoverTime = Date.now();
+
+ //onclick 
+ 
+ //throttle for ship text animation
+{
+
+
+  if ((intersects[0].object.name.includes("Object")) && (currentHoverTime-lastHoverTime > 2000)) {
+   
+  
+  
+    gsap.to(shipText, {
+      opacity: 1,
+      duration: 0.8,
+      ease: "power2.in"
+      ,onComplete:()=>{
+        lastHoverTime=currentHoverTime
+      }
+    });
+  
+  
+  }
+  
+  else if((!intersects[0].object.name.includes("Object")) && (currentHoverTime-lastHoverTime > 2000)){
+    gsap.to(shipText, {
+      opacity: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    });
+  }
+}
+
+ 
+
+}
+
+
+
+
+
+
+window.addEventListener('pointermove', onPointerMove);
+
+
 function onClick(event) {
   // Calculate pointer position
   pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
@@ -267,78 +333,133 @@ function onClick(event) {
   raycaster.setFromCamera(pointer, camera);
 
   // Calculate objects intersecting the picking ray, but only check spheres group
-  const intersects = raycaster.intersectObjects(spheres.children);
+  const intersects = raycaster.intersectObjects(scene.children);
 
-  if (intersects.length > 0) {
-    const clickedSphere = intersects[0].object;
-    console.log('Clicked sphere:', clickedSphere);
 
-    // Get the texture name from the map URL
-    const texturePath = clickedSphere.material.map.source.data.src;
-    // const textureName = texturePath.split('/').pop(); // Gets the filename from path
-    // console.log('Clicked texture:', textureName);
 
-    if (texturePath.includes("csilla" || "volcanic" || "venus")) {
-      
-    openNextPage(texturePath);      
+//onclick for ship
+{
+  // console.log(intersects[0].object.name);
+  const clickedObjName = intersects[0].object.name
+  if (clickedObjName.includes("planet")) {
+    gsap.to(model.scale, {
+    x: 0,
+    y: 0,
+    z: 0,
+    duration: 1,
+    onComplete: () => {
+      setTimeout(() => {
+        // window.location.href = pagePath;
+
+        switch (clickedObjName) {
+          case "planet0":
+            window.location.href="/work.html"
+            break;
+
+            case "planet1":
+            window.location.href="/project.html"
+            break;
+
+            case "planet2":
+            window.location.href="/contact.html"
+            break;
+        
+          default:
+            break;
+        }
+      }, 250);
     }
+  })
+
+  gsap.to(model.position, {
+
+    y: -.1,
+    ease: "power1.inOut",
+    duration: 1.5,
+
+  })
+  } 
+  
+  else if(clickedObjName.includes("Object")) {
+    gsap.to(shipText,{
+      opacity:1,
+      duration:.8,
+      ease:"power2.in"
+    })
   }
+  }
+
+
+  // if (intersects.length > 0) {
+  //   const clickedSphere = intersects[0].object;
+  //   console.log('Clicked sphere:', clickedSphere);
+
+  //   // Get the texture name from the map URL
+  //   const texturePath = clickedSphere.material.map.source.data.src;
+  //   // const textureName = texturePath.split('/').pop(); // Gets the filename from path
+  //   // console.log('Clicked texture:', textureName);
+
+  //   if (texturePath.includes("csilla" || "volcanic" || "venus")) {
+
+  //   openNextPage(texturePath);      
+  //   }
+  // }
 }
 
 // Add this near your other raycaster code
-function onShipInteraction(event) {
+// function onShipInteraction(event) {
 
-  if (!model) return;
-  // Calculate pointer position
-  pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-  pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
+//   if (!model) return;
+//   // Calculate pointer position
+//   pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
+//   pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
-  // Update the picking ray with the camera and pointer position
-  raycaster.setFromCamera(pointer, camera);
+//   // Update the picking ray with the camera and pointer position
+//   raycaster.setFromCamera(pointer, camera);
 
-  // Check intersection with the ship model
-  const intersects = raycaster.intersectObject(model);
+//   // Check intersection with the ship model
+//   const intersects = raycaster.intersectObject(model);
 
-  // Get the ship text element
-  const shipText = document.querySelector('.shipText');
+//   // Get the ship text element
+//   const shipText = document.querySelector('.shipText');
 
-  if (intersects.length > 0) {
-    // Ship was intersected
-    gsap.to(shipText, {
-      opacity: 1,
-      duration: 0.8,
-      ease: "power2.in"
-    });
-  } else {
-    // No intersection
-    gsap.to(shipText, {
-      opacity: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    });
-  }
-}
+//   if (intersects.length > 0) {
+//     // Ship was intersected
+//     gsap.to(shipText, {
+//       opacity: 1,
+//       duration: 0.8,
+//       ease: "power2.in"
+//     });
+//   } else {
+//     // No intersection
+//     gsap.to(shipText, {
+//       opacity: 0,
+//       duration: 0.8,
+//       ease: "power2.out"
+//     });
+//   }
+// }
 
 function landingShip(pagePath) {
   gsap.to(model.scale, {
-      x: 0,
-      y: 0,
-      z: 0,
-      duration: 1,
-      onComplete: () => {
-        setTimeout(() => {
-          window.location.href = pagePath;
-        }, 250);
-      }
-    })
+    x: 0,
+    y: 0,
+    z: 0,
+    duration: 1,
+    onComplete: () => {
+      setTimeout(() => {
+        window.location.href = pagePath;
+      }, 250);
+    }
+  })
 
-    gsap.to(model.position, {
-      
-      y: -.1,
-      ease:"power1.inOut",
-      duration: 1.5,
-      
-    })
+  gsap.to(model.position, {
+
+    y: -.1,
+    ease: "power1.inOut",
+    duration: 1.5,
+
+  })
 }
 
 function openNextPage(texturePath) {
@@ -372,51 +493,14 @@ function getRandomRadianAngle() {
   return angles[randomIndex];
 }
 
-// function spaceshipAni() {
-//   shipTimeline = gsap.timeline({
-//     repeat: -1, // Infinite loop
-//     // onComplete: () => tl.restart() // Restart animation when complete
-//   });
-
-//   shipTimeline.to(model.position, {
-//     y: .1, // Random y position
-//     duration: shipAnimationTime,
-//     ease: "power1.inOut",
-//     onComplete: function () {
-
-//       // Update to a new random y position
-//       gsap.to(model.position, {
-//         y: getRandomInRange(),
-//         duration: shipAnimationTime,
-//         ease: "power1.inOut"
-//       });
-//     }
-//   }, 'a');
-
-//   shipTimeline.to(model.rotation, {
-//     x: Math.PI / 4, // Random y position
-//     duration: shipAnimationTime,
-//     ease: "power1.inOut",
-//     onComplete: function () {
-
-//       // Update to a new random y position
-//       gsap.to(model.rotation, {
-//         x: getRandomRadianAngle(),
-//         duration: shipAnimationTime,
-//         ease: "power1.inOut"
-//       });
-//     }
-//   }, 'a');
-
-
-// }
 
 // Add click event listener
-window.addEventListener('click', onClick);
+// window.addEventListener('click', onClick);
 
-// Add these event listeners after your existing window.addEventListener('click', onClick);
-window.addEventListener('mousemove', onShipInteraction);
-window.addEventListener('click', onShipInteraction);
+// Add these event listeners after your existing 
+window.addEventListener('click', onClick);
+// window.addEventListener('mousemove', onShipInteraction);
+// window.addEventListener('click', onShipInteraction);
 
 function animate() {
   requestAnimationFrame(animate);
