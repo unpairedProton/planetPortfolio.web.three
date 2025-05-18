@@ -20,7 +20,36 @@
   src: url(./font/Roboto-Regular.ttf);
 }
 
+
+@font-face {
+  font-family: "alien";
+  src: url(./font/TheCalling.ttf);
+}
+
+
 h3{
   font-family: 'bellina';
   font-size: 1.4rem;
+}
+
+@layer utilities{
+  .bg-images{
+   @apply absolute object-cover object-center w-full h-full
+  }
+
+  .projectTags{
+    @apply p-1 border-pink-950  border w-fit px-2 bg-pink-200 text-pink-950 rounded font-semibold text-base
+  }
+   .workTags{
+    @apply p-1 border-blue-950  border w-fit px-2 bg-blue-300 text-blue-950 rounded font-semibold text-base
+  }
+
+  .inputField{
+    @apply  rounded border-blue-900 p-1 outline-0 border-0 bg-blue-300 text-blue-950
+  }
+}
+
+.bg-blur{
+      backdrop-filter: blur(16px);
+      background-color: rgba(39, 31, 35, 0.40) ;
 }

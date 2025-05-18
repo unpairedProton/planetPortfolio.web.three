@@ -1,19 +1,17 @@
 import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+// import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
 import { gsap } from 'gsap';
 import { GLTFLoader } from 'three/examples/jsm/Addons.js';
 
-let scene, camera, renderer, controls, randVal;
-let model;
+let  scene, camera, renderer, controls, randVal,model;
+
 const planetAnimationTime = 1.58
 const shipAnimationTime = 1.2
-let shipTimeline;
-const shipText = document.querySelector('.shipText');
-
 let lastHoverTime=0
-
 const sphereMesh = []
+const shipText = document.querySelector('.shipText');
+let starSphere;
 
 // Scene
 scene = new THREE.Scene();
@@ -25,9 +23,8 @@ camera = new THREE.PerspectiveCamera(
   , 0.1
   , 100 // far point itna chahiye ni tha to 1000 se 100 kr diya
 );
-// camera.position.set(0, 1, 5);
+
 camera.position.z = 10;
-let starSphere
 
 // Renderer
 const canvas = document.querySelector('canvas');
@@ -36,12 +33,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 
-// OrbitControls
-// controls = new OrbitControls(camera, renderer.domElement);
-// controls.enableDamping = true;
-
-//hdri light
-
+// implimenting hdri light
 const rgbeLoader = new RGBELoader();
 rgbeLoader.load('https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/lonely_road_afternoon_puresky_1k.hdr', function (texture) {
   texture.mapping = THREE.EquirectangularReflectionMapping;
@@ -50,7 +42,7 @@ rgbeLoader.load('https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/lonely_roa
 });
 
 
-//add radius
+//attributes for planetes
 const radius = 1.3;
 const segments = 40;
 const orbitRadius = 4.5; // real orbit ka radius
@@ -116,13 +108,6 @@ function sphereObj(params) {
 }
 sphereObj();
 
-
-
-
-// Resize event
-window.addEventListener('resize', onWindowResize, false);
-
-
 function onWindowResize() {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
@@ -131,7 +116,7 @@ function onWindowResize() {
 
 let lastWheelTime = 0; // Keep track of the last time the wheel event triggered
 let scrollCount = 0;
-function ani2() {
+
 
 
   function handleWheel(event) {
@@ -234,29 +219,29 @@ function ani2() {
 
   // Add the event listener to the element you want to track
   window.addEventListener('wheel', handleWheel);
-}
 
-ani2();
 
-function gsapAni() {
 
-  // gsap.to(spheres.rotation,{
-  //   y: Math.PI * 2,
-  //   duration: 10,
-  //   repeat: -1,
-  //   ease: 'none'
-  // })
 
-  setInterval(() => {
+// function gsapAni() {
 
-    gsap.to(spheres.rotation, {
-      y: `+=${(Math.PI * 2) / 3}`,
-      duration: 2,
-      ease: 'none'
-    })
-  }, 2500);
+//   // gsap.to(spheres.rotation,{
+//   //   y: Math.PI * 2,
+//   //   duration: 10,
+//   //   repeat: -1,
+//   //   ease: 'none'
+//   // })
 
-}
+//   setInterval(() => {
+
+//     gsap.to(spheres.rotation, {
+//       y: `+=${(Math.PI * 2) / 3}`,
+//       duration: 2,
+//       ease: 'none'
+//     })
+//   }, 2500);
+
+// }
 
 // gsapAni();
 
@@ -321,7 +306,7 @@ const currentHoverTime = Date.now();
 
 
 
-window.addEventListener('pointermove', onPointerMove);
+
 
 
 function onClick(event) {
@@ -440,46 +425,46 @@ function onClick(event) {
 //   }
 // }
 
-function landingShip(pagePath) {
-  gsap.to(model.scale, {
-    x: 0,
-    y: 0,
-    z: 0,
-    duration: 1,
-    onComplete: () => {
-      setTimeout(() => {
-        window.location.href = pagePath;
-      }, 250);
-    }
-  })
+// function landingShip(pagePath) {
+//   gsap.to(model.scale, {
+//     x: 0,
+//     y: 0,
+//     z: 0,
+//     duration: 1,
+//     onComplete: () => {
+//       setTimeout(() => {
+//         window.location.href = pagePath;
+//       }, 250);
+//     }
+//   })
 
-  gsap.to(model.position, {
+//   gsap.to(model.position, {
 
-    y: -.1,
-    ease: "power1.inOut",
-    duration: 1.5,
+//     y: -.1,
+//     ease: "power1.inOut",
+//     duration: 1.5,
 
-  })
-}
+//   })
+// }
 
-function openNextPage(texturePath) {
-  // window.location.href = 'https://example.com/next-page'; // Replace with your desired URL
-  if (texturePath.includes('csilla')) {
-    console.log('csilla');
-    landingShip("/work.html")
+// function openNextPage(texturePath) {
+//   // window.location.href = 'https://example.com/next-page'; // Replace with your desired URL
+//   if (texturePath.includes('csilla')) {
+//     console.log('csilla');
+//     landingShip("/work.html")
 
-  }
-  else if (texturePath.includes('volcanic')) {
-    console.log('volcanic');
-  }
-  else if (texturePath.includes('venus')) {
-    console.log('venus');
-  }
-  else {
-    console.log('other');
-  }
+//   }
+//   else if (texturePath.includes('volcanic')) {
+//     console.log('volcanic');
+//   }
+//   else if (texturePath.includes('venus')) {
+//     console.log('venus');
+//   }
+//   else {
+//     console.log('other');
+//   }
 
-}
+// }
 
 
 function getRandomInRange() {
@@ -493,14 +478,14 @@ function getRandomRadianAngle() {
   return angles[randomIndex];
 }
 
-
-// Add click event listener
-// window.addEventListener('click', onClick);
-
-// Add these event listeners after your existing 
+//window events
+{
+window.addEventListener('pointermove', onPointerMove);
 window.addEventListener('click', onClick);
-// window.addEventListener('mousemove', onShipInteraction);
-// window.addEventListener('click', onShipInteraction);
+// Resize event
+window.addEventListener('resize', onWindowResize, false);
+}
+
 
 function animate() {
   requestAnimationFrame(animate);

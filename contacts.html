@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body class=" bg-slate-900 w-full  h-full ">
+
+    <div class="container h-full  mx-auto relative  text-zinc-100">
+        <nav
+            class="fixed bg-transparent backdrop-blur-lg top-0 left-0 z-10 w-full px-6  h-[10%]  flex justify-between items-center">
+            <h1 class="font-bold text-lg font-['dune']">Celest</h1>
+            <div class="flex space-x-6 font-semibold">
+                <a class="" href="/work.html">Work</a>
+                <a href="/projects.html">Projects</a>
+                <a class="text-blue-300" style="text-shadow: 0 0 10px rgb(85, 219, 249);" href="">Contact</a>
+            </div>
+        </nav>
+        <div class="main w-full h-full flex gap-4   p-4 mt-16 items-center justify-center">
+            <section class="flex flex-col gap-2 font-semibold flex-1/2">
+                <header class="text-4xl font-bold" >Get in Touch</header>
+                <form class="w-full flex flex-col  justify-start mt-2" >
+                    <label  class=" text-lg font-semibold " for="fname">Name</label>
+                    <input  class=" inputField" type="text font-semibold" id="name" name="fname"><br>
+                    <label class=" text-lg font-semibold " for="lname">Email</label>
+                    <input class="inputField" type="email " id="email" name="lname"><br>
+                    <label class=" text-lg font-semibold " for="msg">Your Message</label>
+                    <textarea class=" font-semibold inputField" id="msg" name="text" rows="4" cols="50">
+                        </textarea>
+
+                        <br>
+                    <input class="bg-blue-400 rounded-sm p-2 text-lg font-bold" type="submit" value="Send">
+                </form>
+            </section>
+            <section class="reflectScreenSection  flex justify-center items-center flex-1/2 " >
+                <div class="reflectScreen text-blue-300 gap-2 w-[80%] min-h-80 bg-slate-950 border-slate-400 border-2 p-4 font-['alien']">
+                    <h1 class="contactReflectName" ></h1>
+                    <h4 class="contactReflectEmail" ></h4>
+                    <h4 class="contactReflectMsg" ></h4>
+                </div>
+            </section>
+        </div>
+
+    </div>
+</body>
+<script type="module" src="/contact.js"></script>
+</html>
