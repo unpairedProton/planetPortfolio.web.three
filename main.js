@@ -117,147 +117,129 @@ function onWindowResize() {
 
 let lastWheelTime = 0; // Keep track of the last time the wheel event triggered
 let scrollCount = 0;
+let touchStartY = 0;
 
+function handleScroll(direction) {
+  const currentTime = Date.now();
 
+  // Check if 2 seconds have passed since the last scroll event
+  if (currentTime - lastWheelTime > 2000) {
+    console.log("Scroll event triggered!");
 
-  function handleWheel(event) {
-    const currentTime = Date.now();
+    lastWheelTime = currentTime; // Update the last scroll time
 
-    // Check if 2 seconds have passed since the last wheel event
-    if (currentTime - lastWheelTime > 2000) {
-      console.log("Wheel event triggered!");
+    scrollCount = (scrollCount + 1) % 3;
+    const heading = document.querySelectorAll('.headings');
 
-      // Your code to run when the wheel event triggers goes here
+    gsap.to(heading, {
+      y: `-=${100}%`,
+      duration: planetAnimationTime,
+      ease: 'none'
+    })
 
-      lastWheelTime = currentTime; // Update the last wheel time
+    gsap.from("h3", {
+      opacity: 0,
+      duration: 2.1,
+      ease: 'expo.in'
+    })
 
-      const wheelDirect = event.deltaY > 0 ? "down" : "up";
-      console.log(wheelDirect);
+    gsap.to(spheres.rotation, {
+      y: `+=${(Math.PI * 2) / 3}`,
+      duration: planetAnimationTime,
+      ease: 'none',
+      onStart:()=>{
+        spaceshipAudio.play();
+      },
+      onComplete:()=>{
+        spaceshipAudio.pause();
+        spaceshipAudio.currentTime=0;
+      }
+    })
 
-      scrollCount = (scrollCount + 1) % 3;
-      const heading = document.querySelectorAll('.headings');
+    gsap.to(starSphere.rotation, {
+      y: `+=${(Math.PI * 2) / 3}`,
+      duration: planetAnimationTime,
+      ease: 'none',
+    })
 
+    if (scrollCount == 0) {
       gsap.to(heading, {
-        y: `-=${100}%`,
+        y: `0`,
         duration: planetAnimationTime,
-        ease: 'none'
+        ease: 'power2.inOut'
       })
+    }
 
-      gsap.from("h3", {
-        opacity: 0,
-        duration: 2.1,
-        ease: 'expo.in'
-      })
-
-      gsap.to(spheres.rotation, {
-        y: `+=${(Math.PI * 2) / 3}`,
-        duration: planetAnimationTime,
-        ease: 'none',
-        onStart:()=>{
-          spaceshipAudio.play();
-        },
-        onComplete:()=>{
-          spaceshipAudio.pause();
-          spaceshipAudio.currentTime=0;
-        }
-
-
-      })
-
-      gsap.to(starSphere.rotation, {
-        y: `+=${(Math.PI * 2) / 3}`,
-        duration: planetAnimationTime,
-        ease: 'none',
-
-
-      })
-
-      if (scrollCount == 0) {
-        gsap.to(heading, {
-          y: `0`,
-          duration: planetAnimationTime,
-          ease: 'power2.inOut'
+    gsap.to(model.position, {
+      y: getRandomInRange(),
+      duration: shipAnimationTime,
+      ease: "power1.inOut",
+      onComplete: () => {
+        gsap.to(model.position, {
+          y: .1,
+          duration: .8,
+          ease: "power1.inOut",
         })
       }
+    });
 
-
-
-
-      gsap.to(model.position, {
-        y: getRandomInRange(),
-        duration: shipAnimationTime,
-        ease: "power1.inOut",
-        onComplete: () => {
-          gsap.to(model.position, {
-            y: .1,
-            duration: .8,
-            ease: "power1.inOut",
-          })
-        }
-      });
-
-      gsap.to(model.rotation, {
-        x: getRandomRadianAngle(),
-        duration: shipAnimationTime,
-        ease: "power1.inOut",
-        onComplete: () => {
-          gsap.to(model.rotation, {
-            x: Math.PI / 4,
-            duration: .8,
-            ease: "power1.inOut"
-
-          })
-        }
-      });
-    }
+    gsap.to(model.rotation, {
+      x: getRandomRadianAngle(),
+      duration: shipAnimationTime,
+      ease: "power1.inOut",
+      onComplete: () => {
+        gsap.to(model.rotation, {
+          x: Math.PI / 4,
+          duration: .8,
+          ease: "power1.inOut"
+        })
+      }
+    });
   }
+}
 
-  const gltfLoader = new GLTFLoader();
-  gltfLoader.load('/3d/ship.glb', function (gltf) {
-    model = gltf.scene
-    // 
+function handleWheel(event) {
+  const wheelDirect = event.deltaY > 0 ? "down" : "up";
+  console.log(wheelDirect);
+  handleScroll(wheelDirect);
+}
 
-    scene.add(model);
-    model.position.z = 7;
-    model.scale.set(0.01, 0.01, 0.01);
-    model.rotation.y = -Math.PI / 2;
-    model.rotation.x = Math.PI / 4;
-    model.position.y = .1;
-  });
+function handleTouchStart(event) {
+  touchStartY = event.touches[0].clientY;
+}
 
-  // Add the event listener to the element you want to track
-  window.addEventListener('wheel', handleWheel);
+function handleTouchMove(event) {
+  event.preventDefault(); // Prevent default scrolling
+  const touchY = event.touches[0].clientY;
+  const touchDiff = touchY - touchStartY;
+  
+  if (Math.abs(touchDiff) > 100) { // Only trigger if swipe is significant enough
+    const direction = touchDiff > 0 ? "down" : "up";
+    handleScroll(direction);
+    touchStartY = touchY; // Reset the start position
+  }
+}
 
+// Add the event listeners
+window.addEventListener('wheel', handleWheel);
+window.addEventListener('touchstart', handleTouchStart, { passive: false });
+window.addEventListener('touchmove', handleTouchMove, { passive: false });
 
+const gltfLoader = new GLTFLoader();
+gltfLoader.load('/3d/ship.glb', function (gltf) {
+  model = gltf.scene
+  // 
 
-
-// function gsapAni() {
-
-//   // gsap.to(spheres.rotation,{
-//   //   y: Math.PI * 2,
-//   //   duration: 10,
-//   //   repeat: -1,
-//   //   ease: 'none'
-//   // })
-
-//   setInterval(() => {
-
-//     gsap.to(spheres.rotation, {
-//       y: `+=${(Math.PI * 2) / 3}`,
-//       duration: 2,
-//       ease: 'none'
-//     })
-//   }, 2500);
-
-// }
-
-// gsapAni();
-
+  scene.add(model);
+  model.position.z = 7;
+  model.scale.set(0.01, 0.01, 0.01);
+  model.rotation.y = -Math.PI / 2;
+  model.rotation.x = Math.PI / 4;
+  model.position.y = .1;
+});
 
 const raycaster = new THREE.Raycaster();
 const pointer = new THREE.Vector2();
-
-
 
 function onPointerMove(event) {
 
@@ -308,14 +290,6 @@ const currentHoverTime = Date.now();
  
 
 }
-
-
-
-
-
-
-
-
 
 function onClick(event) {
   // Prevent raycaster logic if clicking on a UI element
@@ -386,82 +360,6 @@ function onClick(event) {
   }
 }
 
-// Add this near your other raycaster code
-// function onShipInteraction(event) {
-
-//   if (!model) return;
-//   // Calculate pointer position
-//   pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
-//   pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-//   // Update the picking ray with the camera and pointer position
-//   raycaster.setFromCamera(pointer, camera);
-
-//   // Check intersection with the ship model
-//   const intersects = raycaster.intersectObject(model);
-
-//   // Get the ship text element
-//   const shipText = document.querySelector('.shipText');
-
-//   if (intersects.length > 0) {
-//     // Ship was intersected
-//     gsap.to(shipText, {
-//       opacity: 1,
-//       duration: 0.8,
-//       ease: "power2.in"
-//     });
-//   } else {
-//     // No intersection
-//     gsap.to(shipText, {
-//       opacity: 0,
-//       duration: 0.8,
-//       ease: "power2.out"
-//     });
-//   }
-// }
-
-// function landingShip(pagePath) {
-//   gsap.to(model.scale, {
-//     x: 0,
-//     y: 0,
-//     z: 0,
-//     duration: 1,
-//     onComplete: () => {
-//       setTimeout(() => {
-//         window.location.href = pagePath;
-//       }, 250);
-//     }
-//   })
-
-//   gsap.to(model.position, {
-
-//     y: -.1,
-//     ease: "power1.inOut",
-//     duration: 1.5,
-
-//   })
-// }
-
-// function openNextPage(texturePath) {
-//   // window.location.href = 'https://example.com/next-page'; // Replace with your desired URL
-//   if (texturePath.includes('csilla')) {
-//     console.log('csilla');
-//     landingShip("/work.html")
-
-//   }
-//   else if (texturePath.includes('volcanic')) {
-//     console.log('volcanic');
-//   }
-//   else if (texturePath.includes('venus')) {
-//     console.log('venus');
-//   }
-//   else {
-//     console.log('other');
-//   }
-
-// }
-
-
 function getRandomInRange() {
   // return Math.random() * 0.2 - 0.1; // Returns value between -0.1 and 0.1
   return Math.random() * 0.2 - 0.1; // Returns value between -0.1 and 0.1
@@ -480,7 +378,6 @@ window.addEventListener('click', onClick);
 // Resize event
 window.addEventListener('resize', onWindowResize, false);
 }
-
 
 function animate() {
   requestAnimationFrame(animate);
