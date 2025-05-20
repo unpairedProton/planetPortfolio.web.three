@@ -1,7 +1,7 @@
 import gsap from "gsap"
 import emailjs from '@emailjs/browser';
-
-
+// sending email using emailjs
+{
 const inputElementName = document.getElementById('name');
 const inputElementEmail = document.getElementById('email');
 const inputElementMsg = document.getElementById('msg');
@@ -66,45 +66,27 @@ submitButton.addEventListener('click',async function(e) {
   });
 })
 
-// async function handleSendEmail(e) {
-//     e.preventDefault();
-    
-//     // Disable submit button and show loading state
-//     submitButton.disabled = true;
-//     submitButton.value = 'Sending...';
-    
-//     try {
-//         const templateParams = {
-//             user_name: inputElementName.value,
-//             user_email: inputElementEmail.value,
-//             message: inputElementMsg.value
-//         };
+}
 
-//         const response = await emailjs.send(
-//           import.meta.env.VITE_APP_EMAILJS_SERVICE_ID, // Replace with your EmailJS service ID
-//           import.meta.env.VITE_APP_EMAILJS_TEMPLATE_ID, // Replace with your EmailJS template ID
-//             templateParams
-//         );
+// Contact details
+{
+const socials = document.querySelectorAll(".socials")
 
-//         if (response.status === 200) {
-//             alert('Message sent successfully!');
-//             // Clear form
-//             inputElementName.value = '';
-//             inputElementEmail.value = '';
-//             inputElementMsg.value = '';
-//             // Clear reflection
-//             displayElementName.textContent = '';
-//             displayElementEmail.textContent = '';
-//             displayElementMsg.textContent = '';
-//         }
-//     } catch (error) {
-//         console.error('Error sending email:', error);
-//         alert('Failed to send message. Please try again later.');
-//     } finally {
-//         // Re-enable submit button
-//         submitButton.disabled = false;
-//         submitButton.value = 'Send';
-//     }
-    
-//     return false;
-// }
+socials.forEach(social => {
+  social.addEventListener("mouseenter", () => {
+    gsap.to(social.querySelectorAll("h1"),{
+      y:"-100%",
+      duration:.3,
+      ease:'power2.inOut',
+    })
+  });
+
+  social.addEventListener("mouseleave", () => {
+    gsap.to(social.querySelectorAll("h1"),{
+      y:"0%",
+      duration:.3,
+      ease:'power2.inOut',
+    })
+  });
+});
+}

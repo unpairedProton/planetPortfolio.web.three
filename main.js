@@ -12,7 +12,8 @@ let lastHoverTime=0
 const sphereMesh = []
 const shipText = document.querySelector('.shipText');
 let starSphere;
-
+const spaceshipAudio = document.getElementById('spaceshipAudio');
+spaceshipAudio.volume=0.5;
 // Scene
 scene = new THREE.Scene();
 
@@ -152,6 +153,13 @@ let scrollCount = 0;
         y: `+=${(Math.PI * 2) / 3}`,
         duration: planetAnimationTime,
         ease: 'none',
+        onStart:()=>{
+          spaceshipAudio.play();
+        },
+        onComplete:()=>{
+          spaceshipAudio.pause();
+          spaceshipAudio.currentTime=0;
+        }
 
 
       })

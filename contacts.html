@@ -20,8 +20,8 @@
                 <a class="text-blue-300" style="text-shadow: 0 0 10px rgb(85, 219, 249);" href="/contacts">Contact</a>
             </div>
         </nav>
-        <div class="main w-full h-full flex gap-4   p-4 mt-0 items-center justify-center">
-            <section class="flex flex-col gap-2 font-semibold flex-1/2">
+        <div class="main w-full h-full flex gap-4  mt-24 md:mt-26 lg:mt-4 xl:mt-4   lg:flex-row flex-col  p-4 mt-0 items-center justify-center">
+            <section class=" formSection flex flex-col gap-2 w-full px-4 font-semibold flex-1/2">
                 <header class="text-4xl font-bold" >Get in Touch</header>
                 <form class="w-full flex flex-col  justify-start mt-2" id="contact-form" onsubmit="return handleSendEmail(event)">
                     <label  class=" text-lg font-semibold " for="fname">Name</label>
@@ -34,8 +34,21 @@
                     <br>
                     <input class="bg-blue-400 rounded-sm p-2 text-lg font-bold" type="submit" value="Send">
                 </form>
+
+                <div class="socialsSection flex flex-col gap-1 mt-4">
+                    <div class="socials flex flex-col h-6 overflow-hidden">
+                        <h1>+918802314306</h1>
+                        <h1>+918802314306</h1>
+                    </div>
+                    <div class="socials flex flex-col h-6 overflow-hidden">
+                        <h1>ImVinayPratapSingh@gmail.com</h1>
+                        <h1>ImVinayPratapSingh@gmail.com</h1>
+                    </div>
+                    <div class="socials"></div>
+
+                </div>
             </section>
-            <section class="reflectScreenSection  flex justify-center items-center flex-1/2 " >
+            <section class="reflectScreenSection w-full flex justify-center items-center  flex-1 md:flex-1 lg:flex-1/2 " >
                 <div class="reflectScreen text-blue-300 gap-2 w-[80%] min-h-80 bg-slate-950 border-slate-400 border-2 p-4 font-['alien']">
                     <h1 class="contactReflectName" ></h1>
                     <h4 class="contactReflectEmail" ></h4>

@@ -2,6 +2,7 @@ const volume = document.querySelector("#volume");
 const mute = document.querySelector("#mute");
 let audioEnabled = false;
 const audio = document.querySelector("#audio");
+audio.volume=0.7;
 
 audio.loop = true;
 function toggleAudio() {

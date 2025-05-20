@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @font-face {
   font-family: 'bellina';
-  src: url(./font/Bellina.ttf);
+  src: url(./font/Bellina.woff);
 }
 
 
@@ -11,19 +11,19 @@
 
 @font-face {
   font-family: 'dune';
-  src: url(./font/Dune_Rise.ttf);
+  src: url(./font/Dune_Rise.woff);
 }
 
 
 @font-face {
   font-family: "roboto";
-  src: url(./font/Roboto-Regular.ttf);
+  src: url(./font/Roboto-Regular.woff);
 }
 
 
 @font-face {
   font-family: "alien";
-  src: url(./font/TheCalling.ttf);
+  src: url(./font/TheCalling.woff);
 }
 
 
