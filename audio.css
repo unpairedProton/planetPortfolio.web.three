@@ -1,0 +1,62 @@
+
+
+.icon-container {
+    position: absolute;
+    bottom: 2rem;
+    left: 2rem;
+}
+
+#volume, #mute {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#mute {
+    display: none;
+}
+
+.sos-con, .wa-con, .call-con {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sos-con {
+    /* background-color: #2dd4bf; */
+    color: white;
+    font-weight: bold;
+    z-index: 3;
+}
+
+.wa-con {
+    /* background-color: transparent; */
+    z-index: 2;
+}
+
+.call-con {
+    /* background-color: transparent; */
+    z-index: 1;
+}
+
+.wa-con.active {
+    transform: translateX(-110%);
+}
+
+.call-con.active {
+    transform: translateY(-110%);
+}
+
+.wa-icon, .call-icon {
+    width: 30px;
+    height: 30px;
+}

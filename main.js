@@ -310,6 +310,11 @@ const currentHoverTime = Date.now();
 
 
 function onClick(event) {
+  // Prevent raycaster logic if clicking on a UI element
+  if (event.target.closest('.ui-block')) {
+    return;
+  }
+
   // Calculate pointer position
   pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
   pointer.y = -(event.clientY / window.innerHeight) * 2 + 1;
@@ -320,75 +325,57 @@ function onClick(event) {
   // Calculate objects intersecting the picking ray, but only check spheres group
   const intersects = raycaster.intersectObjects(scene.children);
 
+  //onclick for ship
+  {
+    // console.log(intersects[0].object.name);
+    const clickedObjName = intersects[0].object.name
+    if (clickedObjName.includes("planet")) {
+      gsap.to(model.scale, {
+      x: 0,
+      y: 0,
+      z: 0,
+      duration: 1,
+      onComplete: () => {
+        setTimeout(() => {
+          // window.location.href = pagePath;
 
+          switch (clickedObjName) {
+            case "planet0":
+              window.location.href="/works"
+              break;
 
-//onclick for ship
-{
-  // console.log(intersects[0].object.name);
-  const clickedObjName = intersects[0].object.name
-  if (clickedObjName.includes("planet")) {
-    gsap.to(model.scale, {
-    x: 0,
-    y: 0,
-    z: 0,
-    duration: 1,
-    onComplete: () => {
-      setTimeout(() => {
-        // window.location.href = pagePath;
+              case "planet1":
+              window.location.href="/projects"
+              break;
 
-        switch (clickedObjName) {
-          case "planet0":
-            window.location.href="/work.html"
-            break;
-
-            case "planet1":
-            window.location.href="/project.html"
-            break;
-
-            case "planet2":
-            window.location.href="/contact.html"
-            break;
-        
-          default:
-            break;
-        }
-      }, 250);
-    }
-  })
-
-  gsap.to(model.position, {
-
-    y: -.1,
-    ease: "power1.inOut",
-    duration: 1.5,
-
-  })
-  } 
-  
-  else if(clickedObjName.includes("Object")) {
-    gsap.to(shipText,{
-      opacity:1,
-      duration:.8,
-      ease:"power2.in"
+              case "planet2":
+              window.location.href="/contacts"
+              break;
+          
+            default:
+              break;
+          }
+        }, 250);
+      }
     })
+
+    gsap.to(model.position, {
+
+      y: -.1,
+      ease: "power1.inOut",
+      duration: 1.5,
+
+    })
+    } 
+    
+    else if(clickedObjName.includes("Object")) {
+      gsap.to(shipText,{
+        opacity:1,
+        duration:.8,
+        ease:"power2.in"
+      })
+    }
   }
-  }
-
-
-  // if (intersects.length > 0) {
-  //   const clickedSphere = intersects[0].object;
-  //   console.log('Clicked sphere:', clickedSphere);
-
-  //   // Get the texture name from the map URL
-  //   const texturePath = clickedSphere.material.map.source.data.src;
-  //   // const textureName = texturePath.split('/').pop(); // Gets the filename from path
-  //   // console.log('Clicked texture:', textureName);
-
-  //   if (texturePath.includes("csilla" || "volcanic" || "venus")) {
-
-  //   openNextPage(texturePath);      
-  //   }
-  // }
 }
 
 // Add this near your other raycaster code

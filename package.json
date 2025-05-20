@@ -15,11 +15,13 @@
     "vite-plugin-image-optimizer": "^1.1.8"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.1.6",
     "circletype": "^2.3.0",
     "gsap": "^3.13.0",
     "remixicon": "^4.6.0",
     "tailwindcss": "^4.1.6",
-    "three": "^0.176.0"
+    "three": "^0.176.0",
+    "typewriter-effect": "^2.22.0"
   }
 }
