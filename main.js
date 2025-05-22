@@ -47,7 +47,7 @@ rgbeLoader.load('https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/lonely_roa
 const radius = 1.3;
 const segments = 40;
 const orbitRadius = 4.5; // real orbit ka radius
-const texs = ["./csilla/color.png", "./volcanic/color.png", "./venus/map.jpg"]
+const texs = ["./csilla/color1.png", "./volcanic/color1.png", "./venus/map1.png"]
 
 const spheres = new THREE.Group();
 

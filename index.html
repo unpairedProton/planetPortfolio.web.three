@@ -3,22 +3,22 @@
 
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="icon" type="image/svg+xml" href="/public/icons/fav.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vite App</title>
+  <title class="font-['dune']">Vinay Portfolio | Celest</title>
   <link rel="stylesheet" href="./src/style.css">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="/audio.css">
 </head>
 
 <body>
-  <div
+  <!-- <div
     class="loading fixed flex justify-center items-center text-white top-0 left-0 w-screen h-screen bg-zinc-900 z-40">
     <div class="loadingTextSection flex flex-col gap-4 w-full h-full justify-center items-center ">
-      <h1 class="text-4xl font-bold font-['dune']">Welcome to Celest</h1>
-      <h1 class="text-4xl font-bold font-['Bellina']   w-100">Explore new <span id="typewriter">Worlds</span></h1>
+      <h1 class="  text-center  text-2xl lg:text-3xl xl:text-4xl font-bold font-['dune']">Welcome to Celest</h1>
+      <h1 class="  text-center  text-2xl lg:text-3xl xl:text-4xl font-bold font-['Bellina']   w-100">Explore new <span id="typewriter">Worlds</span></h1>
       <div class="timer text-lg  ">01</div>
-    </div>
+    </div> -->
 
   </div>
   <div class="w-full h-[100dvh] bg-zinc-900 overflow-hidden">
@@ -27,6 +27,55 @@
     <div class="absolute top-0  text-white left-0  w-full h-full z-[2]">
       <div class="parentt absolute bottom-0 left-0 w-full h-fit">
         <audio id="audio" src="/tunes/tune.mp3"></audio>
+        <div class="fixed w-fit h-fit ">
+
+          <div id="r1"
+            class="ringContainer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 opacity-100">
+            <div class="imgCon w-full h-full absolute top-0 left-0">
+              <img class="w-full h-full object-cover object-center" src="/public/icons/r2.png" alt="">
+            </div>
+            <div
+              class="textCon absolute top-1/2 left-1/2 flex-col -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] flex justify-start items-center overflow-hidden rounded-full   bg-zinc-900">
+              <h1
+                class="text-2xl flex items-center  text-zinc-100 justify-center font-bold h-full shrink-0 text-center ">
+                Click
+              </h1>
+              <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
+                Click
+              </h1>
+            </div>
+          </div>
+          <div id="r2"
+            class="ringContainer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 opacity-0">
+            <div class="imgCon w-full h-full absolute top-0 left-0">
+              <img class="w-full h-full object-cover object-center" src="/public/icons/r1.png" alt="">
+            </div>
+            <div
+              class="textCon absolute top-1/2 left-1/2 flex-col -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] flex justify-start items-center overflow-hidden rounded-full bg-zinc-900">
+              <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
+                Scroll
+              </h1>
+              <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
+                Scroll
+              </h1>
+            </div>
+          </div>
+          <div id="r3"
+            class="ringContainer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 opacity-0">
+            <div class="imgCon w-full h-full absolute top-0 left-0">
+              <img class="w-full h-full object-cover object-center" src="/public/icons/r3.png" alt="">
+            </div>
+            <div
+              class="textCon absolute top-1/2 left-1/2 flex-col -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] flex justify-start items-center overflow-hidden rounded-full bg-zinc-900">
+              <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
+                Click
+              </h1>
+              <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
+                Click
+              </h1>
+            </div>
+          </div>
+        </div>
         <div class="icon-container absolute bottom-8 left-8 bg-slate-800 w-10 h-10 rounded-full ui-block z-50">
           <svg id="volume" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -72,9 +121,9 @@
       <nav class="w-full z-100 px-3 lg:px-6  h-[10%]  flex justify-between items-center">
         <a class="font-bold text-lg font-['dune']" href="/">Celest</a>
         <div class="flex space-x-6 font-semibold">
-          <a href="/works.html">Work</a>
-          <a href="/projects.html">Projects</a>
-          <a href="/contacts.html">Contact</a>
+          <a href="/works">Work</a>
+          <a href="/projects">Projects</a>
+          <a href="/contacts">Contact</a>
         </div>
       </nav>
       <div id="font" class="font-['dune']  w-full h-[22%] font-display  flex justify-center flex-col items-center ">
@@ -110,7 +159,8 @@
 <!-- <script src="https://cdn.jsdelivr.net/gh/peterhry/CircleType@2.3.1/dist/circletype.min.js"></script> -->
 <!-- <script src="/circularText.js" type="module"></script> -->
 
-<script src="loading.js" type="module"></script>
+<!-- <script src="loading.js" type="module"></script> -->
+<script src="floatbtn.js" type="module"></script>
 <script src="sos.js" type="module"></script>
 <script src="audio.js" type="module"></script>
 <script src="main.js" type="module"></script>
