@@ -309,6 +309,16 @@ function onClick(event) {
 
   //onclick for ship
   {
+
+    function restoreShip(){
+      gsap.to(model.scale, {
+        y: .01,
+        z: .01,
+        x: .01,
+        duration: 1.5,
+        ease: "power1.inOut",
+      })
+    }
     // console.log(intersects[0].object.name);
     const clickedObjName = intersects[0].object.name
     if (clickedObjName.includes("planet")) {
@@ -324,14 +334,17 @@ function onClick(event) {
           switch (clickedObjName) {
             case "planet0":
               window.location.href="/works"
+              restoreShip();
               break;
 
               case "planet1":
               window.location.href="/projects"
+              restoreShip();
               break;
 
               case "planet2":
               window.location.href="/contacts"
+              restoreShip();
               break;
           
             default:
