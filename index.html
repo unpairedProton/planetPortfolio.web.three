@@ -9,6 +9,7 @@
   <link rel="stylesheet" href="./src/style.css">
   <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
   <link rel="stylesheet" href="/audio.css">
+  <link rel="stylesheet" href="/floatbtn.css">
 </head>
 
 <body>
@@ -21,103 +22,12 @@
     </div> -->
 
   </div>
-  <div class="w-full h-[100dvh] bg-zinc-900 overflow-hidden">
+  <main class="page1 w-full h-[100dvh] bg-zinc-900 overflow-hidden">
+
+    <!-- audio section -->
     <audio id="audio" src="/tunes/tune.mp3"></audio>
     <audio id="spaceshipAudio" src="/tunes/spaceship.mp3"></audio>
-    <div class="absolute top-0  text-white left-0  w-full h-full z-[2]">
-      <div class="parentt absolute bottom-0 left-0 w-full h-fit">
-        <audio id="audio" src="/tunes/tune.mp3"></audio>
-        <div class="fixed w-fit h-fit ">
-
-          <div id="r1"
-            class="ringContainer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 opacity-100">
-            <div class="imgCon w-full h-full absolute top-0 left-0">
-              <img class="w-full h-full object-cover object-center" src="/public/icons/r2.png" alt="">
-            </div>
-            <div
-              class="textCon absolute top-1/2 left-1/2 flex-col -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] flex justify-start items-center overflow-hidden rounded-full   bg-zinc-900">
-              <h1
-                class="text-2xl flex items-center  text-zinc-100 justify-center font-bold h-full shrink-0 text-center ">
-                Click
-              </h1>
-              <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
-                Click
-              </h1>
-            </div>
-          </div>
-          <div id="r2"
-            class="ringContainer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 opacity-0">
-            <div class="imgCon w-full h-full absolute top-0 left-0">
-              <img class="w-full h-full object-cover object-center" src="/public/icons/r1.png" alt="">
-            </div>
-            <div
-              class="textCon absolute top-1/2 left-1/2 flex-col -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] flex justify-start items-center overflow-hidden rounded-full bg-zinc-900">
-              <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
-                Scroll
-              </h1>
-              <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
-                Scroll
-              </h1>
-            </div>
-          </div>
-          <div id="r3"
-            class="ringContainer absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 opacity-0">
-            <div class="imgCon w-full h-full absolute top-0 left-0">
-              <img class="w-full h-full object-cover object-center" src="/public/icons/r3.png" alt="">
-            </div>
-            <div
-              class="textCon absolute top-1/2 left-1/2 flex-col -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] flex justify-start items-center overflow-hidden rounded-full bg-zinc-900">
-              <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
-                Click
-              </h1>
-              <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
-                Click
-              </h1>
-            </div>
-          </div>
-        </div>
-        <div class="icon-container absolute bottom-8 left-8 bg-slate-800 w-10 h-10 rounded-full ui-block z-50">
-          <svg id="volume" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path
-              d="M15.54 8.46C16.4774 9.39764 17.004 10.6692 17.004 11.995C17.004 13.3208 16.4774 14.5924 15.54 15.53"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M19.07 4.93C20.9447 6.80528 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07"
-              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          </svg>
-          <svg id="mute" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M23 9L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-            <path d="M17 9L23 15" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-              stroke-linejoin="round" />
-          </svg>
-        </div>
-
-        <div class="sos-con ui-block select-none bg-slate-800 z-50">
-          <span>SOS</span>
-        </div>
-        <div class="wa-con bg-slate-700 ui-block bg-slate-800 z-50">
-          <svg class="wa-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375c-.99-1.576-1.516-3.391-1.516-5.26 0-5.445 4.455-9.885 9.942-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.859 2.909 4.35 2.909 6.99-.004 5.444-4.46 9.885-9.935 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"
-              fill="white" />
-          </svg>
-        </div>
-        <div class="call-con bg-slate-700 ui-block bg-slate-800 z-50">
-          <svg class="call-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path
-              d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"
-              fill="white" />
-          </svg>
-        </div>
-      </div>
-      <div
-        class="absolute shipText opacity-0 bottom-8 text-2xl left-1/2 -translate-x-1/2 rounded-lg font-bold font-['Bellina'] text-center w-fit min-w-60 h-fit bg-transparent text-slate-900 p-2 backdrop-blur-lg">
-        Hi, I am Vinay Pratap <br> A Frontend Developer with passion for Building
-      </div>
+    <div class="floatPage  absolute top-0  text-white left-0  w-full h-full z-[2]">
       <nav class="w-full z-100 px-3 lg:px-6  h-[10%]  flex justify-between items-center">
         <a class="font-bold text-lg font-['dune']" href="/">Celest</a>
         <div class="flex space-x-6 font-semibold">
@@ -126,7 +36,8 @@
           <a href="/contacts">Contact</a>
         </div>
       </nav>
-      <div id="font" class="font-['dune']  w-full h-[22%] font-display  flex justify-center flex-col items-center ">
+      <section id="font"
+        class="heroHeadings font-['dune']  w-full h-[22%] font-display  flex justify-center flex-col items-center ">
         <div class=" h-[7em]  overflow-hidden relative">
 
           <div class=" headings text-center h-full flex flex-col justify-between">
@@ -150,11 +61,110 @@
         </div>
 
         <div class="w-96 h-px bg-gradient-to-r from-transparent via-white to-transparent mt-4"></div>
+    </div>
+    <h1
+      class=" shipText absolute opacity-100 bottom-[28%]  text-lg md:text-xl lg:text-2xl left-1/2 -translate-x-1/2 rounded-lg font-bold font-['Bellina'] text-center w-fit min-w-60 h-fit bg-transparent text-slate-900 p-2 backdrop-blur-lg">
+      Hi, I am Vinay Pratap <br> A Frontend Developer with passion for Building
+    </h1>
+    <div class="parentt absolute flex justify-between items-center bottom-6 left-0 w-full h-fit px-15 opacity-70 z-50">
+      
+      <div class="icon-container relative bg-slate-800 w-10 h-10 rounded-full ui-block z-50 text-zinc-100 ">
+        
+        <svg id="mute" class="absolute -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 " width="24"
+          height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M23 9L17 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M17 9L23 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <svg id="volume" class="absolute  hidden -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 " width="24" height="24"
+          viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M11 5L6 9H2V15H6L11 19V5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+            stroke-linejoin="round" />
+          <path d="M15.54 8.46C16.4774 9.39764 17.004 10.6692 17.004 11.995C17.004 13.3208 16.4774 14.5924 15.54 15.53"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M19.07 4.93C20.9447 6.80528 21.9979 9.34836 21.9979 12C21.9979 14.6516 20.9447 17.1947 19.07 19.07"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
       </div>
-      <!-- <div class="fixed demo top-1/2  left-1/2 -translate-x-1/2 -translate-y-1/2" id="demo"  style="word-spacing:10px;">this is rounded...</div> -->
+      <div class=" floatingIns relative w-26 h-26 flex justify-center items-center rounded-full bg-slate-800">
+       <div  class="floatCon w-[90%] h-[90%]">
+        <div id="r1"
+        class="ringContainer  w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-100">
+        <div class="imgCon w-full h-full absolute top-0 left-0">
+          <img class="w-full h-full object-cover object-center" src="/public/icons/r2.png" alt="">
+        </div>
+        <div
+          class="textCon absolute top-1/2 left-1/2 flex-col -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] flex justify-start items-center overflow-hidden rounded-full   bg-zinc-900">
+          <h1 class="text-2xl flex items-center  text-zinc-100 justify-center font-bold h-full shrink-0 text-center ">
+            Click
+          </h1>
+          <h1 class="  text-lg md:text-xl lg:text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
+            Click
+          </h1>
+        </div>
+      </div>
+      <div id="r2"
+        class="ringContainer  w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0">
+        <div class="imgCon w-full h-full absolute top-0 left-0">
+          <img class="w-full h-full object-cover object-center" src="/public/icons/r1.png" alt="">
+        </div>
+        <div
+          class="textCon absolute top-1/2 left-1/2 flex-col -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] flex justify-start items-center overflow-hidden rounded-full bg-zinc-900">
+          <h1 class="  text-lg md:text-xl lg:text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
+            Scroll
+          </h1>
+          <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
+            Scroll
+          </h1>
+        </div>
+      </div>
+      <div id="r3"
+        class="ringContainer  w-full h-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-0">
+        <div class="imgCon w-full h-full absolute top-0 left-0">
+          <img class="w-full h-full object-cover object-center" src="/public/icons/r3.png" alt="">
+        </div>
+        <div
+          class="textCon absolute top-1/2 left-1/2 flex-col -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] flex justify-start items-center overflow-hidden rounded-full bg-zinc-900">
+          <h1 class="  text-lg md:text-xl lg:text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
+            Click
+          </h1>
+          <h1 class="text-2xl flex items-center justify-center font-bold h-full shrink-0 text-center text-zinc-100">
+            Click
+          </h1>
+        </div>
+      </div>
+       </div>
+      </div>
+      <div class=" sosSection relative w-10 h-10  " >
+        <div
+          class="sos-con  absolute  w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out ui-block select-none bg-slate-800 text-zinc-100 font-bold   z-3">
+          <span>SOS</span>
+        </div>
+        <div
+          class="wa-con  absolute  w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out bg-slate-700 ui-block bg-slate-800 z-2">
+          <svg class="wa-icon w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M17.498 14.382c-.301-.15-1.767-.867-2.04-.966-.273-.101-.473-.15-.673.15-.197.295-.771.964-.944 1.162-.175.195-.349.21-.646.075-.3-.15-1.263-.465-2.403-1.485-.888-.795-1.484-1.77-1.66-2.07-.174-.3-.019-.465.13-.615.136-.135.301-.345.451-.523.146-.181.194-.301.297-.496.1-.21.049-.375-.025-.524-.075-.15-.672-1.62-.922-2.206-.24-.584-.487-.51-.672-.51-.172-.015-.371-.015-.571-.015-.2 0-.523.074-.797.359-.273.3-1.045 1.02-1.045 2.475s1.07 2.865 1.219 3.075c.149.195 2.105 3.195 5.1 4.485.714.3 1.27.48 1.704.629.714.227 1.365.195 1.88.121.574-.091 1.767-.721 2.016-1.426.255-.705.255-1.29.18-1.425-.074-.135-.27-.21-.57-.345m-5.446 7.443h-.016c-1.77 0-3.524-.48-5.055-1.38l-.36-.214-3.75.975 1.005-3.645-.239-.375c-.99-1.576-1.516-3.391-1.516-5.26 0-5.445 4.455-9.885 9.942-9.885 2.654 0 5.145 1.035 7.021 2.91 1.875 1.859 2.909 4.35 2.909 6.99-.004 5.444-4.46 9.885-9.935 9.885M20.52 3.449C18.24 1.245 15.24 0 12.045 0 5.463 0 .104 5.334.101 11.893c0 2.096.549 4.14 1.595 5.945L0 24l6.335-1.652c1.746.943 3.71 1.444 5.71 1.447h.006c6.585 0 11.946-5.336 11.949-11.896 0-3.176-1.24-6.165-3.495-8.411"
+              fill="white" />
+          </svg>
+        </div>
+        <div
+          class="call-con  absolute w-12 h-12 rounded-full flex items-center justify-center cursor-pointer transition-all duration-300 ease-in-out bg-slate-700 ui-block bg-slate-800 z-1">
+          <svg class="call-icon w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56a.977.977 0 00-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"
+              fill="white" />
+          </svg>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- <div class="fixed demo top-1/2  left-1/2 -translate-x-1/2 -translate-y-1/2" id="demo"  style="word-spacing:10px;">this is rounded...</div> -->
     </div>
     <canvas id="canvas"></canvas>
-  </div>
+  </main>
 </body>
 <!-- <script src="https://cdn.jsdelivr.net/gh/peterhry/CircleType@2.3.1/dist/circletype.min.js"></script> -->
 <!-- <script src="/circularText.js" type="module"></script> -->

@@ -13,7 +13,7 @@ const sphereMesh = []
 const shipText = document.querySelector('.shipText');
 let starSphere;
 const spaceshipAudio = document.getElementById('spaceshipAudio');
-spaceshipAudio.volume=0.5;
+spaceshipAudio.volume=0.3;
 // Scene
 scene = new THREE.Scene();
 
