@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
     <link rel="stylesheet" href="./src/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
 
 <body class=" bg-slate-900 w-full min-h-screen h-full relative">
@@ -21,66 +24,84 @@
                 <a class="text-blue-300" style="text-shadow: 0 0 10px rgb(85, 219, 249);" href="/contacts">Contact</a>
             </div>
         </nav>
-        <div class="main w-full h-full flex gap-4  mt-24 md:mt-26 lg:mt-4 xl:mt-4   lg:flex-row flex-col  p-4 mt-0 items-center justify-center">
-            <section class=" formSection flex flex-col gap-2 w-full px-4 font-semibold flex-1/2">
-                <header class="text-4xl font-bold" >Get in Touch</header>
-                <form class="w-full flex flex-col  justify-start mt-2" id="contact-form" onsubmit="return handleSendEmail(event)">
-                    <label  class=" text-lg font-semibold " for="fname">Name</label>
-                    <input  class=" inputField" type="text font-semibold" id="name" name="user_name" required><br>
-                    <label class=" text-lg font-semibold " for="lname">Email</label>
-                    <input class="inputField" type="email " id="email" name="user_email" required><br>
-                    <label class=" text-lg font-semibold " for="msg">Your Message</label>
-                    <textarea class=" font-semibold inputField" id="msg" name="message" rows="4" cols="50" required>
-                    </textarea>
-                    <br>
-                    <input class="bg-blue-400 rounded-sm p-2 text-lg font-bold" type="submit" value="Send">
-                </form>
+        <div class="main w-full h-full flex gap-1  mt-24 md:mt-26 lg:mt-28 xl:mt-28 flex-col">
+            <header class="text-4xl font-bold font-['dune']">Send Signal</header>
+            <section
+                class="formContainer w-full h-full flex gap-4 flex-col p-4 lg:flex-row items-start justify-center">
 
-                <div class="socialsSection flex flex-col gap-1 mt-4">
-                    <div class="socials flex flex-col h-6 overflow-hidden">
-                        <h1>+918802314306</h1>
-                        <h1>+918802314306</h1>
-                    </div>
-                    <div class="socials flex flex-col h-6 overflow-hidden">
-                        <h1>ImVinayPratapSingh@gmail.com</h1>
-                        <h1>ImVinayPratapSingh@gmail.com</h1>
-                    </div>
-                    <div class="socials"></div>
+                <section class=" formSection flex flex-col gap-2 w-full px-4 font-semibold flex-1/2">
 
-                </div>
-            </section>
-            <section class="reflectScreenSection w-full flex justify-center items-center  flex-1 md:flex-1 lg:flex-1/2 " >
-                <div class="reflectScreen text-blue-300 gap-2 w-[80%] min-h-80 bg-slate-950 border-slate-400 border-2 p-4 font-['alien']">
-                    <h1 class="contactReflectName" ></h1>
-                    <h4 class="contactReflectEmail" ></h4>
-                    <h4 class="contactReflectMsg" ></h4>
-                </div>
+                    <form class="w-full flex flex-col  justify-start mt-2" id="contact-form"
+                        onsubmit="return handleSendEmail(event)">
+                        <label class=" text-lg font-semibold " for="fname">Name</label>
+                        <input class=" inputField" type="text font-semibold" id="name" name="user_name" required><br>
+                        <label class=" text-lg font-semibold " for="lname">Email</label>
+                        <input class="inputField" type="email " id="email" name="user_email" required><br>
+                        <label class=" text-lg font-semibold " for="msg">Your Message</label>
+                        <textarea class=" font-semibold inputField" id="msg" name="message" rows="4" cols="50" required></textarea>
+                        <br>
+                        <input class="bg-blue-400 rounded-sm p-2 text-lg font-bold" type="submit" value="Send">
+                    </form>
+
+                    <div class="socialsSection  gap-4 mt-4">
+                        <!-- <div class="socialLeft flex flex-col gap-1" > -->
+                            <h1 class="plan text-lg font-bold font-['Bellina'] h-6">Planet Cordinates:</h1>
+                            <h1 class="worm text-lg font-bold font-['Bellina'] h-6">Wormhole E-mile Address:</h1>
+
+                        <!-- </div> -->
+                        <!-- <div class="socialRight flex flex-col gap-1 " > -->
+                            <div class="num socials flex flex-col h-6 overflow-hidden">
+                                <h1 class=" font-['Space_Mono']"  >+91-880-2314-306</h1>
+                                <h1 class="font-['Space_Mono']">+91-880-2314-306</h1>
+                            </div>
+                            <div class="gmail socials flex flex-col h-6 overflow-hidden">
+                                <h1 class="font-['Space_Mono']">Im Vinay Pratap Singh @gmail.com</h1>
+                                <h1 class="font-['Space_Mono']">Im Vinay Pratap Singh @gmail.com</h1>
+                            </div>
+                        <!-- </div> -->
+                       
+                
+
+                    </div>
+                </section>
+                <section
+                    class="reflectScreenSection w-full flex flex-col gap-2 justify-center items-center  flex-1 md:flex-1 lg:flex-1/2 ">
+
+                    <h1 class="text-lg md:text-xl lg:text-2xl font-bold font-['Bellina']">Alien Translator</h1>
+                    <div
+                        class="reflectScreen text-blue-300 gap-2 w-[80%] min-h-80 bg-slate-950 border-slate-400 border-2 p-4 font-['alien']">
+                        <h1 class="contactReflectName"></h1>
+                        <h4 class="contactReflectEmail"></h4>
+                        <h4 class="contactReflectMsg"></h4>
+                    </div>
+                </section>
             </section>
         </div>
+        <footer
+            class="backdrop-blur-lg bg-transparent flex justify-between text-white font-semibold items-center py-2 ">
+            <div class="footerText">© 2025 <span class="font-black">Celest</span> All rights reserved.</div>
+            <div class="footerIconSection  flex items-center justify-center gap-2 h-10">
+                <a class="h-full w-fit  " href="https://github.com/unpairedProton">
+                    <img class="h-[80%]" src="/public/icons/github2.png" alt="" srcset="">
+                </a>
+                <a class="h-full w-fit" href="https://www.linkedin.com/in/thevinaypratap/">
+                    <img class="h-[80%]" src="/public/icons/linkedIn2.png" alt="">
+                </a>
+            </div>
+        </footer>
 
     </div>
-    <footer
-        class="backdrop-blur-lg bg-transparent sticky bottom-0 flex justify-between text-white font-semibold items-center px-10 py-2 mt-6">
-        <div class="footerText">© 2025 <span class="font-black">Celest</span> All rights reserved.</div>
-        <div class="footerIconSection  flex items-center justify-center gap-2 h-10">
-            <a class="h-full w-fit  " href="https://github.com/unpairedProton">
-              <img class="h-[80%]" src="/public/icons/github2.svg" alt="" srcset="">
-            </a>
-            <a class="h-full w-fit" href="https://www.linkedin.com/in/thevinaypratap/">
-                <img class="h-[80%]" src="/public/icons/linkedIn.svg" alt="">
-            </a>
-        </div>
-    </footer>
-    <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
-</script>
-<script type="text/javascript">
-   (function(){
-      emailjs.init({
-        publicKey: "iyv0Tkq_tofT0jxP6",
-      });
-   })();
-</script>
+
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init({
+                publicKey: "iyv0Tkq_tofT0jxP6",
+            });
+        })();
+    </script>
 </body>
 <script type="module" src="/contact.js"></script>
+
 </html>

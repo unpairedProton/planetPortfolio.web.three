@@ -8,9 +8,10 @@ import gsap from "gsap";
     const con1 = document.querySelector("#r1");
     const con2 = document.querySelector("#r2");
     const con3 = document.querySelector("#r3");
-    const middleTextTime = 4
+    const middleTextTime = 5
     // const rotationAngleLeft = -30
     const rotationAngle = 15
+    const rotationTime = 3
     const completeRotationTime = .5
     const completeRotationAngle = 285
     // const middleTextTime = 4
@@ -34,7 +35,7 @@ import gsap from "gsap";
         ease: "power1.inOut",
     }, {
         rotation: rotationAngle,
-        duration: 2,
+        duration: rotationTime,
         repeat: 2,
         repeatDelay: 1,
         yoyo: true,
@@ -60,7 +61,7 @@ import gsap from "gsap";
         ease: "power1.inOut",
     }, {
         rotation: rotationAngle,
-        duration: 2,
+        duration: rotationTime,
         repeat: 2,
         repeatDelay: 1,
         yoyo: true,
@@ -87,7 +88,7 @@ import gsap from "gsap";
         ease: "power1.inOut",
     }, {
         rotation: rotationAngle,
-        duration: 2,
+        duration: rotationTime,
         repeat: 2,
         repeatDelay: 1,
         yoyo: true,

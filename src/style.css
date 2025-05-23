@@ -26,6 +26,10 @@
   src: url(./font/TheCalling.woff);
 }
 
+@font-face {
+  font-family: "space-mono";
+  src: url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+}
 
 h3{
   font-family: 'bellina';
@@ -52,4 +56,37 @@ h3{
 .bg-blur{
       backdrop-filter: blur(16px);
       background-color: rgba(39, 31, 35, 0.40) ;
+}
+
+
+
+.socialsSection{
+  display: grid;
+  grid-template-areas: "p num"
+                       "w gmail";
+}
+
+@media (max-width: 768px) {
+  .socialsSection{
+    grid-template-areas: "p"
+                         "num"
+                         "w"
+                         "gmail";
+  }
+}
+
+.plan{
+  grid-area: p;
+}
+
+.worm{
+  grid-area: w;
+}
+
+.num{
+  grid-area: num;
+}
+
+.gmail{
+  grid-area: gmail;
 }
