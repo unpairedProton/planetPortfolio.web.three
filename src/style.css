@@ -36,6 +36,11 @@ h3{
   font-size: 1.4rem;
 }
 
+.bg-blur{
+      backdrop-filter: blur(16px);
+      background-color: rgba(39, 31, 35, 0.40) ;
+}
+
 @layer utilities{
   .bg-images{
    @apply absolute object-cover object-center w-full h-full
@@ -51,12 +56,13 @@ h3{
   .inputField{
     @apply  rounded border-blue-900 p-1 outline-0 border-0 bg-blue-300 text-blue-950
   }
+
+  .projectTiles{
+    @apply flex flex-col gap-2 min-w-80 w-[40vw]  p-2
+  }
 }
 
-.bg-blur{
-      backdrop-filter: blur(16px);
-      background-color: rgba(39, 31, 35, 0.40) ;
-}
+
 
 
 

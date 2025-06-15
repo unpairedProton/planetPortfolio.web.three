@@ -5,6 +5,28 @@ const layer2 = document.querySelector('.layer-2')
 const layer3 = document.querySelector('.layer-3')
 const layer4 = document.querySelector('.layer-4')
 const layer5 = document.querySelector('.layer-5')
+const changedIcons = document.querySelectorAll('.iconSection')
+const iconsLocation = [
+    "/images/movie.webp",
+    "/images/ecom.webp",
+    "/images/rann.webp",
+    "/images/round.webp",
+    "/images/king.webp",
+    "/images/pomodoro.webp",
+    "/images/clay.webp",
+    "/images/obys.webp",
+    "/images/robot.webp",
+    "/images/gta.webp",
+
+
+]
+
+const gettingIcons = () =>{
+    changedIcons.forEach((iconCon,i)=>{
+        iconCon.querySelector("img").src=iconsLocation[i]
+    })
+}
+gettingIcons()
 
 window.addEventListener("mousemove", (e) => {
     const mouseX = (e.clientX / window.innerWidth - 0.5) * 40;
@@ -49,3 +71,4 @@ window.addEventListener("mousemove", (e) => {
     }
     
 });
+
